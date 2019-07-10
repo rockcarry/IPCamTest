@@ -1,0 +1,6 @@
+﻿<resources>
+    <string name="app_name">IPCamTest</string>
+    <string name="open_video_failed">Failed to open video url: %s !</string>
+    <string name="admin_device">Admin ipcam device</string>
+    <string name="watch_video">Watch live video</string>
+</resources>
