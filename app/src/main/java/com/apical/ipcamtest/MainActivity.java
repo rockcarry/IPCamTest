@@ -13,9 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.apical.fanplayer.PlayerActivity;
-
-import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
     private IpcamDetector     mIpcamDetector;

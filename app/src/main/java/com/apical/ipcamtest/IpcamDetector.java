@@ -118,7 +118,7 @@ public class IpcamDetector {
                             mIpcamList.clear();
                             for (int i=0; i<mDevList.length; i++) {
                                 if (mDevList[i].tick != 0) {
-                                    mIpcamList.add(mDevList[i].uid + " " + mDevList[i].ip);
+                                    mIpcamList.add(String.format("%-20s %s", mDevList[i].uid, mDevList[i].ip));
                                 }
                             }
                             if (mHandler != null) {

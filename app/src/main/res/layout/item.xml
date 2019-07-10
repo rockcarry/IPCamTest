@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>  
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.apical.ipcamtest.MyTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item"
     android:layout_width="fill_parent"
     android:layout_height="64dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
     android:gravity="center_vertical"
-    android:textSize="18dip"
-    android:typeface="monospace"/>
+    android:textSize="16dip" />
