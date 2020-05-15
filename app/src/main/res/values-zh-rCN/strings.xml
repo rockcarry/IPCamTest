@@ -1,4 +1,9 @@
 ﻿<resources>
     <string name="admin_device">管理设备</string>
     <string name="watch_video">查看视频</string>
+    <string name="btn_pair_camera">配对摄像机</string>
+    <string name="txt_wifiap_name">热点名：</string>
+    <string name="txt_wifiap_passwd">密　码：</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_confirm">确定</string>
 </resources>

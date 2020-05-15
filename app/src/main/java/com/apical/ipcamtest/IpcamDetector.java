@@ -29,6 +29,7 @@ public class IpcamDetector {
     private IpcamDev[]           mDevList       = new IpcamDev[256];
     private ArrayList<String>    mIpcamList     = new ArrayList<String>();
     private Handler              mHandler       = null;
+    private String               mIPAddess      = "255.255.255.255";
 
     public IpcamDetector(String ip, Handler handler) {
         for (int i=0; i<mDevList.length; i++) mDevList[i] = new IpcamDev();
@@ -40,6 +41,7 @@ public class IpcamDetector {
             mRxPacket = new DatagramPacket(mRxData, mRxData.length);
         } catch (Exception e) { e.printStackTrace(); }
         mHandler = handler;
+        mIPAddess= ip;
     }
 
     public void start() {
@@ -52,6 +54,14 @@ public class IpcamDetector {
 //                      System.out.println("tx thread running...");
                         try {
                             mSocket.send(mTxPacket);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                            try {
+                                byte[] senddata = "uid?".getBytes();
+                                mTxPacket = new DatagramPacket(senddata, senddata.length, InetAddress.getByName(mIPAddess), PORT);
+                            } catch (Exception e2) {}
+                        }
+                        try {
                             Thread.sleep(1000);
                         } catch (Exception e) { e.printStackTrace(); }
                     }
@@ -82,6 +92,9 @@ public class IpcamDetector {
                             mDevList[n].ip  = ip;
                             if (data.startsWith("uid:")) {
                                 mDevList[n].uid = data.substring(4);
+                            }
+                            if (mDevList[n].uid.equals("")) {
+                                mDevList[n].uid = "unknown";
                             }
                             if (mDevList[n].tick == 0) {
 //                              System.out.println("device found: uid = " + mDevList[n].uid + ", ip = " + mDevList[n].ip);

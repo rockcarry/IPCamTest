@@ -3,6 +3,7 @@
     package="com.apical.ipcamtest">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,8 +19,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".QRCodeBarActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name="com.apical.fanplayer.PlayerActivity"
+            android:name="com.rockcarry.fanplayer.PlayerActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"

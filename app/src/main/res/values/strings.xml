@@ -3,4 +3,9 @@
     <string name="open_video_failed">Failed to open video url: %s !</string>
     <string name="admin_device">Admin ipcam device</string>
     <string name="watch_video">Watch live video</string>
+    <string name="btn_pair_camera">Pair camera</string>
+    <string name="txt_wifiap_name">AP Name:</string>
+    <string name="txt_wifiap_passwd">Password:</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_confirm">Confirm</string>
 </resources>
