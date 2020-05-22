@@ -60,7 +60,8 @@ public class PlayerActivity extends Activity {
             } else if (  scheme.equals("http" )
                       || scheme.equals("https")
                       || scheme.equals("rtsp" )
-                      || scheme.equals("rtmp" ) ) {
+                      || scheme.equals("rtmp" )
+                      || scheme.equals("avkcp") ) {
                 mURL = uri.toString();
             } else if (scheme.equals("content")) {
                 String[] proj = { MediaStore.Images.Media.DATA };
@@ -69,8 +70,8 @@ public class PlayerActivity extends Activity {
                 cursor.moveToFirst();
                 mURL = cursor.getString(colidx);
             }
-            mIsLive = mURL.startsWith("http://") && mURL.endsWith(".m3u8") || mURL.startsWith("rtmp://") || mURL.startsWith("rtsp://");
-            mPlayer = new MediaPlayer(mURL, mHandler, "video_hwaccel=1;video_rotate=0;audio_bufpktn=100;video_bufpktn=100;");
+            mIsLive = mURL.startsWith("http://") && mURL.endsWith(".m3u8") || mURL.startsWith("rtmp://") || mURL.startsWith("rtsp://") || mURL.startsWith("avkcp://");
+            mPlayer = new MediaPlayer(mURL, mHandler, "video_hwaccel=1;init_timeout=2000;auto_reconnect=2000;audio_bufpktn=50;video_bufpktn=50;rtsp_transport=2;");
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("open url:");
@@ -89,8 +90,8 @@ public class PlayerActivity extends Activity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mURL = edt.getText().toString();
-                    mIsLive = mURL.startsWith("http://") && mURL.endsWith(".m3u8") || mURL.startsWith("rtmp://") || mURL.startsWith("rtsp://");
-                    mPlayer = new MediaPlayer(mURL, mHandler, "video_hwaccel=1;init_timeout=2000;auto_reconnect=2000;rtsp_transport=2");
+                    mIsLive = mURL.startsWith("http://") && mURL.endsWith(".m3u8") || mURL.startsWith("rtmp://") || mURL.startsWith("rtsp://") || mURL.startsWith("avkcp://");
+                    mPlayer = new MediaPlayer(mURL, mHandler, "video_hwaccel=1;init_timeout=2000;auto_reconnect=2000;audio_bufpktn=50;video_bufpktn=50;rtsp_transport=2;");
                     mPlayer.setDisplaySurface(mVideoSurface);
                     testPlayerPlay(true);
                 }

@@ -42,12 +42,10 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
         String broadcastip = "255.255.255.255";
-        /*
         try {
             byte[] byte4ipaddr = getLocalInetAddress().getAddress();
             broadcastip = String.format("%d.%d.%d.255", (int)byte4ipaddr[0] & 0xff, (int)byte4ipaddr[1] & 0xff, (int)byte4ipaddr[2] & 0xff);
         } catch (Exception e) { e.printStackTrace(); }
-        */
 
         mIpcamDetector = new IpcamDetector(broadcastip, mHandler);
         mIPCamListView = (ListView)findViewById(R.id.lv_ipcams);
@@ -111,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             final String strItem = mIPCamListView.getItemAtPosition(position).toString();
             try {
                 String[] ss = strItem.split("\\s+");
-                Uri uri = Uri.parse(String.format("rtsp://%s/video0", ss[1]));
+                Uri uri = Uri.parse(String.format("avkcp://%s:8000", ss[1]));
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
                 startActivity(intent);

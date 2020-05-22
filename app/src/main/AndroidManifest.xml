@@ -37,6 +37,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <data android:scheme="rtsp" />
                 <data android:scheme="rtmp" />
+                <data android:scheme="avkcp" />
             </intent-filter>
         </activity>
     </application>
