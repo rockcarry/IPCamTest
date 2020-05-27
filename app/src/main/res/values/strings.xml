@@ -8,4 +8,6 @@
     <string name="txt_wifiap_passwd">Password:</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
+    <string name="play_rtsp_video">play rtsp video</string>
+    <string name="play_avkcp_video">play avkcp video</string>
 </resources>

@@ -6,4 +6,6 @@
     <string name="txt_wifiap_passwd">密　码：</string>
     <string name="btn_cancel">取消</string>
     <string name="btn_confirm">确定</string>
+    <string name="play_rtsp_video">播放 rtsp 码流</string>
+    <string name="play_avkcp_video">播放 avkcp 码流</string>
 </resources>
