@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         try {
                             String[] ss = strItem.split("\\s+");
-                            Uri uri = Uri.parse(String.format("avkcp://%s:8000", ss[1]));
+                            Uri uri = Uri.parse(String.format("rtsp://%s/livecam", ss[1]));
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
                             startActivity(intent);
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         try {
                             String[] ss = strItem.split("\\s+");
-                            Uri uri = Uri.parse(String.format("rtsp://%s/video0", ss[1]));
+                            Uri uri = Uri.parse(String.format("avkcp://%s:8000", ss[1]));
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
                             startActivity(intent);
