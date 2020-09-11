@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            final String[] opertions = new String[] { getString(R.string.play_rtsp_video), getString(R.string.play_avkcp_video) };
+            final String[] opertions = new String[] { getString(R.string.play_rtsp_video), getString(R.string.play_avkcp_video), getString(R.string.play_ffrdp_video) };
             final String strItem = mIPCamListView.getItemAtPosition(position).toString();
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setItems(opertions, new DialogInterface.OnClickListener() {
@@ -134,20 +134,21 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         break;
+                    case 2:
+                        try {
+                            String[] ss = strItem.split("\\s+");
+                            Uri uri = Uri.parse(String.format("ffrdp://%s:8000", ss[1]));
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
                     }
                 }
             });
             builder.show();
-            /*
-            try {
-                String[] ss = strItem.split("\\s+");
-                Uri uri = Uri.parse(String.format("avkcp://%s:8000", ss[1]));
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
-                startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
         }
     };
 

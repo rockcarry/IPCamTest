@@ -38,6 +38,7 @@
                 <data android:scheme="rtsp" />
                 <data android:scheme="rtmp" />
                 <data android:scheme="avkcp" />
+                <data android:scheme="ffrdp" />
             </intent-filter>
         </activity>
     </application>

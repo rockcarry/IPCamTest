@@ -10,4 +10,5 @@
     <string name="btn_confirm">Confirm</string>
     <string name="play_rtsp_video">play rtsp video</string>
     <string name="play_avkcp_video">play avkcp video</string>
+    <string name="play_ffrdp_video">play ffrdp video</string>
 </resources>

@@ -8,4 +8,5 @@
     <string name="btn_confirm">确定</string>
     <string name="play_rtsp_video">播放 rtsp 码流</string>
     <string name="play_avkcp_video">播放 avkcp 码流</string>
+    <string name="play_ffrdp_video">播放 ffrdp 码流</string>
 </resources>
