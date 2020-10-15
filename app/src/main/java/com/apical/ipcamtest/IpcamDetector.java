@@ -90,9 +90,7 @@ public class IpcamDetector {
 //                          System.out.println("received data = " + data);
 
                             mDevList[n].ip  = ip;
-                            if (data.startsWith("uid:")) {
-                                mDevList[n].uid = data.substring(4);
-                            }
+                            mDevList[n].uid = data.startsWith("uid:") ? data.substring(4) : "";
                             if (mDevList[n].uid.equals("")) {
                                 mDevList[n].uid = "unknown";
                             }
