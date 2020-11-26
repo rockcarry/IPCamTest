@@ -29,7 +29,7 @@ import android.util.Log;
 import com.apical.ipcamtest.R;
 
 public class PlayerActivity extends Activity {
-    private static final String PLAYER_INIT_PARAMS = "video_hwaccel=1;init_timeout=2000;auto_reconnect=2000;audio_bufpktn=5;video_bufpktn=5;rtsp_transport=2;";
+    private static final String PLAYER_INIT_PARAMS = "video_hwaccel=1;init_timeout=2000;auto_reconnect=2000;audio_bufpktn=4;video_bufpktn=1;rtsp_transport=2;";
     private MediaPlayer  mPlayer    = null;
     private playerView   mRoot      = null;
     private SurfaceView  mVideo     = null;
