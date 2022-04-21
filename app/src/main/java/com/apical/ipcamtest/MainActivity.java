@@ -26,6 +26,8 @@ import java.net.Inet4Address;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
+import com.rockcarry.fanplayer.PlayerActivity;
+
 public class MainActivity extends AppCompatActivity {
     private IpcamDetector     mIpcamDetector;
     private ListView          mIPCamListView;
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             String[] ss = strItem.split("\\s+");
                             Uri uri = Uri.parse(String.format("avkcp://%s:8000", ss[1]));
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                            intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
+                            intent.setClass(MainActivity.this, com.rockcarry.fanplayer.PlayerActivity.class);
                             startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                             String[] ss = strItem.split("\\s+");
                             Uri uri = Uri.parse(String.format("ffrdp://%s:8000", ss[1]));
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                            intent.setComponent(new ComponentName("com.apical.ipcamtest", "com.rockcarry.fanplayer.PlayerActivity"));
+                            intent.setClass(MainActivity.this, com.rockcarry.fanplayer.PlayerActivity.class);
                             startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();
