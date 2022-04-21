@@ -230,53 +230,53 @@ public class PlayerActivity extends Activity {
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-        switch (msg.what) {
-        case MSG_UPDATE_PROGRESS: {
-                mHandler.sendEmptyMessageDelayed(MSG_UPDATE_PROGRESS, 200);
-                int progress = mPlayer != null ? (int)mPlayer.getParam(MediaPlayer.PARAM_MEDIA_POSITION) : 0;
-                if (!mIsLive) {
-                    if (progress >= 0) mSeek.setProgress(progress);
-                } else {
-                    mBuffering.setVisibility(progress == -1 ? View.VISIBLE : View.INVISIBLE);
+            switch (msg.what) {
+            case MSG_UPDATE_PROGRESS: {
+                    mHandler.sendEmptyMessageDelayed(MSG_UPDATE_PROGRESS, 200);
+                    int progress = mPlayer != null ? (int)mPlayer.getParam(MediaPlayer.PARAM_MEDIA_POSITION) : 0;
+                    if (!mIsLive) {
+                        if (progress >= 0) mSeek.setProgress(progress);
+                    } else {
+                        mBuffering.setVisibility(progress == -1 ? View.VISIBLE : View.INVISIBLE);
+                    }
                 }
-            }
-            break;
-        case MSG_HIDE_BUTTONS: {
-                mSeek .setVisibility(View.INVISIBLE);
-                mPause.setVisibility(View.INVISIBLE);
-            }
-            break;
-        case MSG_UDPATE_VIEW_SIZE: {
-                if (mPlayer != null && mPlayer.initVideoSize(mVideoViewW, mVideoViewH, mVideo)) {
-                    mVideo.setVisibility(View.VISIBLE);
+                break;
+            case MSG_HIDE_BUTTONS: {
+                    mSeek .setVisibility(View.INVISIBLE);
+                    mPause.setVisibility(View.INVISIBLE);
                 }
-            }
-            break;
-        case MediaPlayer.MSG_OPEN_DONE: {
-                if (mPlayer != null) {
-                    mPlayer .setDisplaySurface(mVideoSurface);
-                    mVideo  .setVisibility(View.INVISIBLE);
+                break;
+            case MSG_UDPATE_VIEW_SIZE: {
+                    if (mPlayer != null && mPlayer.initVideoSize(mVideoViewW, mVideoViewH, mVideo)) {
+                        mVideo.setVisibility(View.VISIBLE);
+                    }
+                }
+                break;
+            case MediaPlayer.MSG_OPEN_DONE: {
+                    if (mPlayer != null) {
+                        mPlayer .setDisplaySurface(mVideoSurface);
+                        mVideo  .setVisibility(View.INVISIBLE);
+                        mHandler.sendEmptyMessage(MSG_UDPATE_VIEW_SIZE);
+                        mSeek.setMax((int)mPlayer.getParam(MediaPlayer.PARAM_MEDIA_DURATION));
+                        testPlayerPlay(true);
+                    }
+                }
+                break;
+            case MediaPlayer.MSG_OPEN_FAILED: {
+                    String str = String.format(getString(R.string.open_video_failed), mURL);
+                    Toast.makeText(PlayerActivity.this, str, Toast.LENGTH_LONG).show();
+                }
+                break;
+            case MediaPlayer.MSG_PLAY_COMPLETED: {
+                    if (!mIsLive) finish();
+                }
+                break;
+            case MediaPlayer.MSG_VIDEO_RESIZED: {
+                    mVideo.setVisibility(View.INVISIBLE);
                     mHandler.sendEmptyMessage(MSG_UDPATE_VIEW_SIZE);
-                    mSeek.setMax((int)mPlayer.getParam(MediaPlayer.PARAM_MEDIA_DURATION));
-                    testPlayerPlay(true);
                 }
+                break;
             }
-            break;
-        case MediaPlayer.MSG_OPEN_FAILED: {
-                String str = String.format(getString(R.string.open_video_failed), mURL);
-                Toast.makeText(PlayerActivity.this, str, Toast.LENGTH_LONG).show();
-            }
-            break;
-        case MediaPlayer.MSG_PLAY_COMPLETED: {
-                if (!mIsLive) finish();
-            }
-            break;
-        case MediaPlayer.MSG_VIDEO_RESIZED: {
-                mVideo.setVisibility(View.INVISIBLE);
-                mHandler.sendEmptyMessage(MSG_UDPATE_VIEW_SIZE);
-            }
-            break;
-        }
         }
     };
 
