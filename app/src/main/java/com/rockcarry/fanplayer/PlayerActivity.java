@@ -26,9 +26,15 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 import android.util.Log;
+
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+
 import com.apical.ipcamtest.R;
 
 public class PlayerActivity extends Activity {
+    private static final String TAG = "fanplayer";
     private static final String PLAYER_INIT_PARAMS = "video_hwaccel=1;init_timeout=2000;auto_reconnect=2000;audio_bufpktn=4;video_bufpktn=1;rtsp_transport=2;";
     private MediaPlayer  mPlayer    = null;
     private playerView   mRoot      = null;
@@ -47,6 +53,21 @@ public class PlayerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getApplicationInfo().packageName, PackageManager.GET_PERMISSIONS);
+            if (packageInfo.requestedPermissions != null) {
+                for (String permission : packageInfo.requestedPermissions) {
+                    Log.v(TAG, "Checking permissions for: " + permission);
+                    if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(packageInfo.requestedPermissions, 1);
+                    }
+                }
+            }
+        } catch (NameNotFoundException e) {
+            Log.e(TAG, "Unable to load package's permissions", e);
+        }
+
         setContentView(R.layout.player_main);
         hideBottomUIMenu();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
